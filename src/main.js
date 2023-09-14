@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import { appRouter } from "@/routes"
 import { appVuetify } from "@/boot/vuetify"
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 import './styles/global.scss'
 
 import App from './App.vue'

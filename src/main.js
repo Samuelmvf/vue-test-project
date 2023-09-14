@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import { appRouter } from "@/routes"
 import './styles/global.scss'
 
-createApp(App).mount('#app')
+import App from './App.vue'
+
+createApp(App).use(appRouter).mount('#app')

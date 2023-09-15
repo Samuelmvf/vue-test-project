@@ -1,12 +1,12 @@
 <template>
   <section>
-    <h1>Client</h1>
+    <h1>Produto</h1>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'PageCliente',
+  name: 'page-produto',
   data () {
     return {
     }

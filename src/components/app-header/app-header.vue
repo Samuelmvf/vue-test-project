@@ -2,18 +2,18 @@
   <header class="bg-primary">
     <nav class="px-4 max-app-size d-flex justify-content-between">
       <logo-completo />
-      <menu-web />
+      <app-menu />
     </nav>
   </header>
 </template>
 
 <script>
+import AppMenu from "@/components/app-menu/app-menu.vue";
 import LogoCompleto from "@/components/logo/completo/logo-completo.vue";
-import MenuWeb from "@/components/menu/web/menu-web.vue";
 
 export default {
   name: 'app-header',
-  components: { LogoCompleto, MenuWeb },
+  components: { AppMenu, LogoCompleto },
   data () {
     return {}
   },

@@ -1,25 +1,26 @@
 <template>
-  <div class="d-flex align-items-center gap-1">
-    <menu-dropdown
-      v-for="subMenu in subMenus"
-      :key="subMenu.nome"
-      :nome="subMenu.nome"
-      :icon="subMenu.icon"
-      :actions="subMenu.actions"
-      :subtitulo="subMenu.subtitulo"
-    />
-  </div>
+  <menu-mobile v-if="isMobileView" :sub-menus="subMenus"/>
+  <menu-web v-else :sub-menus="subMenus"/>
 </template>
 
 <script>
-import MenuDropdown from "@/components/menu-dropdown/menu-dropdown.vue";
+import { useDisplay } from "vuetify";
+
+import MenuWeb from "@/components/app-menu/web/menu-web.vue";
+import MenuMobile from "@/components/app-menu/mobile/menu-mobile.vue";
 
 export default {
-  name: 'menu-web',
-  components: { MenuDropdown },
+  name: 'app-menu',
+  components: { MenuWeb, MenuMobile },
   data () {
     return {
       subMenus: this.factorySubMenus()
+    }
+  },
+  computed: {
+    isMobileView () {
+      const { xs } = useDisplay()
+      return xs.value
     }
   },
   methods: {
@@ -67,6 +68,6 @@ export default {
         }
       ]
     }
-  }
+  },
 }
 </script>

@@ -1,22 +1,28 @@
 <template>
   <header class="bg-primary">
     <nav class="px-4 max-app-size d-flex justify-content-between">
-      <logo-completo />
+      <logo-img v-if="isMobileView" />
+      <logo-completo v-else/>
       <app-menu />
     </nav>
   </header>
 </template>
 
 <script>
+import { useDisplay } from "vuetify";
 import AppMenu from "@/components/app-menu/app-menu.vue";
 import LogoCompleto from "@/components/logo/completo/logo-completo.vue";
+import LogoImg from "@/components/logo/img/logo-img.vue";
 
 export default {
   name: 'app-header',
-  components: { AppMenu, LogoCompleto },
-  data () {
-    return {}
-  },
+  components: {LogoImg, AppMenu, LogoCompleto },
+  computed: {
+    isMobileView () {
+      const { xs } = useDisplay()
+      return xs.value
+    }
+  }
 }
 </script>
 

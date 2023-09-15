@@ -1,6 +1,8 @@
 <template>
-  <section class="max-app-size center">
-    <h1>Produto</h1>
+  <section class="bg-background-gradient section-min-height">
+    <div class="center max-app-size">
+      <h1>Produto</h1>
+    </div>
   </section>
 </template>
 

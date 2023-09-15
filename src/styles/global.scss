@@ -36,15 +36,18 @@ ul {
 }
 
 .max-app-size {
-  max-width: 80rem;
-}
-
-.text-title {
-  font-family: $fontTitle;
-  font-size: 3rem;
-  text-transform: uppercase;
+  max-width: 75rem;
 }
 
 .center {
   margin: 0 auto;
+}
+
+.section-min-height {
+  min-height: calc(100vh - 4rem);
+}
+
+.bg-background-gradient {
+  background: #ECE9E6;
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6);
 }

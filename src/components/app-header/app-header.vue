@@ -1,7 +1,7 @@
 <template>
   <header class="bg-primary">
     <nav class="px-4 max-app-size d-flex justify-content-between">
-      <logo-img height="45" v-if="isMobileView" />
+      <logo-img :height="44" v-if="isMobileView" />
       <logo-completo v-else/>
       <app-menu />
     </nav>

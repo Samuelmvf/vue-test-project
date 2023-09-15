@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-items-center">
-    <logo-img />
+    <logo-img height="45" />
     <h1 class="ml-2 text-title user-select-none">SAMSystem</h1>
   </div>
 </template>

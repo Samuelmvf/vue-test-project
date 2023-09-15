@@ -2,7 +2,7 @@
   <svg xmlns:xlink="http://www.w3.org/1999/xlink"
        xmlns="http://www.w3.org/2000/svg"
        viewBox="0 0 241.22000122070312 263.6000061035156"
-       fill="#006BCB" width="43.92473365135983"  height="48" >
+       fill="#006BCB" :width="width"  :height="height" >
     <g fill="#006BCB">
       <g fill="#006BCB">
         <path fill="#00AEFF" d="M119.36 218.75l30.68 44.85H88.69l-30.67-44.85h61.34z"></path>
@@ -17,6 +17,17 @@
 
 <script>
 export default {
-  name: 'logo-img'
+  name: 'logo-img',
+  props: {
+    height: {
+      type: Number,
+      required: true
+    }
+  },
+  computed: {
+    width () {
+      return this.height * 0.915
+    }
+  }
 }
 </script>

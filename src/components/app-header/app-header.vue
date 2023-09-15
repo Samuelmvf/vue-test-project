@@ -1,7 +1,7 @@
 <template>
   <header class="bg-primary">
     <nav class="px-4 max-app-size d-flex justify-content-between">
-      <logo-img v-if="isMobileView" />
+      <logo-img height="45" v-if="isMobileView" />
       <logo-completo v-else/>
       <app-menu />
     </nav>
@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  height: 4.625rem;
+  height: 4rem;
   padding: .625rem 0;
 
   nav {

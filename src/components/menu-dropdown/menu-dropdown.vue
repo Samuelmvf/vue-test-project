@@ -13,27 +13,17 @@
     </template>
 
     <v-list density="compact">
-      <v-list-subheader v-if="subtitulo">{{ subtitulo }}</v-list-subheader>
-
-      <v-list-item
-        v-for="(item, i) in actions"
-        :key="i"
-        :value="item"
-        color="primary"
-      >
-        <template v-slot:prepend>
-          <v-icon :icon="item.icon"></v-icon>
-        </template>
-
-        <v-list-item-title v-text="item.nome"></v-list-item-title>
-      </v-list-item>
+      <bloco-menu :titulo="subtitulo" :actions="actions" />
     </v-list>
   </v-menu>
 </template>
 
 <script>
+import BlocoMenu from "@/components/bloco-menu/bloco-menu.vue";
+
 export default {
   name: 'menu-dropdown',
+  components: { BlocoMenu },
   props: {
     nome: {
       type: String,

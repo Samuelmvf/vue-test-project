@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="max-app-size center">
     <h1>Documentacao</h1>
   </section>
 </template>

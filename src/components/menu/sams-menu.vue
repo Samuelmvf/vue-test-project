@@ -6,8 +6,8 @@
 <script>
 import { useDisplay } from "vuetify";
 
-import MenuWeb from "@/components/app-menu/web/menu-web.vue";
-import MenuMobile from "@/components/app-menu/mobile/menu-mobile.vue";
+import MenuWeb from "@/components/menu/web/menu-web.vue";
+import MenuMobile from "@/components/menu/mobile/menu-mobile.vue";
 
 export default {
   name: 'app-menu',

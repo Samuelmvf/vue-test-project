@@ -3,20 +3,20 @@
     <nav class="px-4 max-app-size d-flex justify-content-between">
       <logo-img :height="44" v-if="isMobileView" />
       <logo-completo v-else/>
-      <app-menu />
+      <sams-menu />
     </nav>
   </header>
 </template>
 
 <script>
 import { useDisplay } from "vuetify";
-import AppMenu from "@/components/app-menu/app-menu.vue";
+import SamsMenu from "@/components/menu/sams-menu.vue";
 import LogoCompleto from "@/components/logo/completo/logo-completo.vue";
 import LogoImg from "@/components/logo/img/logo-img.vue";
 
 export default {
   name: 'app-header',
-  components: {LogoImg, AppMenu, LogoCompleto },
+  components: {LogoImg, SamsMenu, LogoCompleto },
   computed: {
     isMobileView () {
       const { xs } = useDisplay()

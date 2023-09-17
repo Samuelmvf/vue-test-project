@@ -1,15 +1,16 @@
 <template>
-  <app-header />
+  <sams-header />
   <router-view></router-view>
-  <app-footer />
+  <sams-footer />
 </template>
 
 <script>
-import AppHeader from "@/components/app-header/app-header.vue";
-import AppFooter from "@/components/app-footer/app-footer.vue";
+import SamsHeader from "@/components/header/sams-header.vue";
+import SamsFooter from "@/components/footer/sams-footer.vue";
+
 
 export default {
   name: 'App',
-  components: { AppHeader , AppFooter },
+  components: { SamsHeader , SamsFooter },
 }
 </script>

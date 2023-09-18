@@ -1,4 +1,8 @@
 export { default as PageCliente } from './cliente/page-cliente.vue'
+export { default as PageCadastroCliente } from './cliente/cadastro/page-cadastro-cliente.vue'
+export { default as PageEditarCliente } from './cliente/editar/page-editar-cliente.vue'
+export { default as PageListagemCliente } from './cliente/listagem/page-listagem-cliente.vue'
+export { default as PageAssociarProduto } from './cliente/associar-produto/page-associar-produto.vue'
 export { default as PageDocumentacao } from './documentacao/page-documentacao.vue'
 export { default as PageNotFound } from './not-found/page-not-found.vue'
 export { default as PageProduto } from './produto/page-produto.vue'

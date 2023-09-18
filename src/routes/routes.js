@@ -1,4 +1,7 @@
-import { PageCliente, PageDocumentacao, PageNotFound, PageProduto } from "@/pages"
+import {
+  PageCliente, PageCadastroCliente, PageEditarCliente, PageAssociarProduto,
+  PageDocumentacao, PageNotFound, PageProduto, PageListagemCliente
+} from "@/pages"
 
 const routes = [
   {
@@ -9,7 +12,12 @@ const routes = [
   {
     path: '/cliente',
     component: PageCliente,
-    children: []
+    children: [
+      { path: '', component: PageListagemCliente },
+      { path: 'cadastrar', component: PageCadastroCliente },
+      { path: 'associar-produto', component: PageAssociarProduto},
+      { path: ':id', component: PageEditarCliente}
+    ]
   },
   {
     path: '/produto',

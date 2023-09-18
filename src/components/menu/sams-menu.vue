@@ -33,18 +33,15 @@ export default {
             {
               nome: 'Cadastrar',
               icon: 'mdi-account-plus',
-              acao: () => {
-              }
+              acao: () => this.$router.push('/cliente/cadastrar')
             }, {
               nome: 'Listar',
               icon: 'mdi-text-box-outline',
-              acao: () => {
-              }
+              acao: () => this.$router.push('/cliente')
             }, {
               nome: 'Associar produto',
               icon: 'mdi-link-box-variant',
-              acao: () => {
-              }
+              acao: () => this.$router.push('/cliente/associar-produto')
             }
           ],
           subtitulo: 'Serviços'
@@ -55,13 +52,11 @@ export default {
             {
               nome: 'Cadastrar',
               icon: 'mdi-archive-plus',
-              acao: () => {
-              }
+              acao: () => this.$router.push('/produto/cadastrar')
             }, {
               nome: 'Listar',
               icon: 'mdi-text-box-outline',
-              acao: () => {
-              }
+              acao: () => this.$router.push('/produto')
             }
           ],
           subtitulo: 'Serviços'

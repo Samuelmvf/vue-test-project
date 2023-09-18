@@ -3,7 +3,7 @@ import { createServer, Model } from 'miragejs'
 // Constantes para simular um atraso na respota da API
 // Podendo assim emitir ações de carregamento
 const TIMEOUT_GET_MS = 300
-const TIMEOUT_POST_PUT_DELETE_MS = 150
+const TIMEOUT_POST_PUT_DELETE_MS = 300
 
 createServer({
   models: {
@@ -58,7 +58,7 @@ createServer({
     this.post('/cliente', (schema, request) => {
       const cliente = JSON.parse(request.requestBody)
 
-      if (!Object.prototype.hasOwnProperty.call(cliente, 'produtos')) {
+      if (!Object.hasOwn(cliente, 'produtos')) {
         cliente.produtos = []
       }
       return schema.create('cliente', cliente);

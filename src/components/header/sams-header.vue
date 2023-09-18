@@ -1,8 +1,10 @@
 <template>
   <header class="bg-primary">
     <nav class="px-4 max-app-size d-flex justify-content-between">
-      <logo-img :height="44" v-if="isMobileView" />
-      <logo-completo v-else/>
+      <div class="logo-content" @click="$router.push('/')">
+        <logo-img :height="44" v-if="isMobileView"/>
+        <logo-completo v-else/>
+      </div>
       <sams-menu />
     </nav>
   </header>
@@ -16,7 +18,7 @@ import LogoImg from "@/components/logo/img/logo-img.vue";
 
 export default {
   name: 'app-header',
-  components: {LogoImg, SamsMenu, LogoCompleto },
+  components: { LogoImg, SamsMenu, LogoCompleto },
   computed: {
     isMobileView () {
       const { xs } = useDisplay()
@@ -35,5 +37,10 @@ header {
     height: 100%;
     margin: 0 auto;
   }
+}
+
+.logo-content {
+  display: flex;
+  cursor: pointer;
 }
 </style>

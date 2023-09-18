@@ -16,6 +16,7 @@ import FormClienteContent from "@/components/form-cliente-content/form-cliente-c
 export default {
   name: 'page-cadastro-cliente',
   components: { TituloSecao, FormClienteContent },
+  inject: ['setAppLoading', 'emitirNotificacao'],
   methods: {
     factoryFormCadastroCliente () {
       return {
@@ -45,13 +46,29 @@ export default {
         id: undefined,
         ...dadosCliente
       }
+
+      this.setAppLoading(true)
       cadastrarCliente(cadastroPayload)
         .then(() => {
-          console.log('Cliente cadastrado com sucesso.')
+          this.setAppLoading(false)
+          this.emitirNotificacao({
+            mensagem: "Cliente cadastrado com sucesso!",
+            propriedades: {
+              timeout: 2000,
+              color: 'success'
+            }
+          })
           this.$router.push('/cliente')
         })
-        .catch(error => {
-          console.log('Tente novamente mais tarde.', error)
+        .catch(() => {
+          this.setAppLoading(false)
+          this.emitirNotificacao({
+            mensagem: "Erro ao cadastrar um cliente, tente novamente mais tarde.",
+            propriedades: {
+              timeout: 2000,
+              color: 'error'
+            }
+          })
         })
     }
   }

@@ -25,8 +25,7 @@ export default {
     }
   },
   methods: {
-    limparNotificacao (val) {
-      console.log(val)
+    limparNotificacao () {
       if (!this.computedNotification.ativa)
         this.$emit('resetNotification')
     }

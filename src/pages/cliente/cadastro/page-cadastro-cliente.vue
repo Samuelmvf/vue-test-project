@@ -9,6 +9,7 @@
 
 <script>
 import { cadastrarCliente } from '@/services/cliente-service'
+import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue";
 import FormClienteContent from "@/components/form-cliente-content/form-cliente-content.vue";
@@ -16,7 +17,8 @@ import FormClienteContent from "@/components/form-cliente-content/form-cliente-c
 export default {
   name: 'page-cadastro-cliente',
   components: { TituloSecao, FormClienteContent },
-  inject: ['setAppLoading', 'emitirNotificacao'],
+  inject: [ 'setAppLoading', 'emitirNotificacao' ],
+
   methods: {
     factoryFormCadastroCliente () {
       return {
@@ -34,9 +36,7 @@ export default {
         },{
           nome: 'Cancelar',
           class: '',
-          func: () => {
-            this.$router.push('/cliente')
-          }
+          func: () => this.$router.push('/cliente')
         }]
       }
     },
@@ -51,24 +51,12 @@ export default {
       cadastrarCliente(cadastroPayload)
         .then(() => {
           this.setAppLoading(false)
-          this.emitirNotificacao({
-            mensagem: "Cliente cadastrado com sucesso!",
-            propriedades: {
-              timeout: 2000,
-              color: 'success'
-            }
-          })
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Cliente cadastrado com sucesso')
           this.$router.push('/cliente')
         })
         .catch(() => {
           this.setAppLoading(false)
-          this.emitirNotificacao({
-            mensagem: "Erro ao cadastrar um cliente, tente novamente mais tarde.",
-            propriedades: {
-              timeout: 2000,
-              color: 'error'
-            }
-          })
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Erro ao cadastrar um cliente, tente novamente mais tarde.')
         })
     }
   }

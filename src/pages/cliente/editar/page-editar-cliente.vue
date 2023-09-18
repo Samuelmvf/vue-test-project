@@ -12,10 +12,12 @@ import { buscarClientePorId, editarCliente} from "@/services/cliente-service"
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
 import FormClienteContent from "@/components/form-cliente-content/form-cliente-content.vue";
+import {NOTIFICACAO_TIPOS} from "@/contants/constantes-notificacao";
 
 export default {
   name: 'page-editar-cliente',
   components: { TituloSecao, FormClienteContent },
+  inject: [ 'setAppLoading', 'emitirNotificacao' ],
 
   data: () => ({
     clienteId: undefined
@@ -39,12 +41,10 @@ export default {
                   this.actionEditarCliente(dadosCliente)
               })
           }
-        },{
+        }, {
           nome: 'Cancelar',
           class: '',
-          func: () => {
-            this.$router.push('/cliente')
-          }
+          func: () => this.$router.push('/cliente')
         }]
       }
     },
@@ -54,13 +54,17 @@ export default {
         id: this.clienteId,
         ...dadosCliente
       }
+
+      this.setAppLoading(true)
       editarCliente(edicaoPayload)
         .then(() => {
-          console.log('Cliente atualizado com sucesso.')
+          this.setAppLoading(false)
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Cliente atualizado com sucesso.')
           this.$router.push('/cliente')
         })
-        .catch(error => {
-          console.log('Tente novamente mais tarde.', error)
+        .catch(() => {
+          this.setAppLoading(false)
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Tente novamente mais tarde.')
         })
     },
 
@@ -70,8 +74,8 @@ export default {
         .then(response => {
           this.$refs.formClienteContent.setCliente(response.data.cliente)
         })
-        .catch(error => {
-          console.log('Ocorreu um erro ao buscar cliente', error)
+        .catch(() => {
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Ocorreu um erro ao buscar cliente')
           this.$router.push('/cliente')
         })
     }

@@ -40,7 +40,6 @@
           class="ml-2"
           label="Ativo"
           color="success"
-          value="success"
           density="compact"
           hide-details
           v-model="cliente.ativo"
@@ -53,7 +52,7 @@
         v-for="(acao, i) in formularioProps.acoes"
         :key="acao.nome + i"
         :class="acao.class"
-        @click="acao.func"
+        @click="acao.func(cliente)"
       >
         {{ acao.nome }}
       </v-btn>
@@ -66,7 +65,7 @@ import SamsInput from "@/components/input/sams-input.vue";
 import { rulesRequired, rulesEmail, rulesTelefone } from '@/utils/rules'
 
 export default {
-  name: 'form-cliente',
+  name: 'form-cliente-content',
   components: { SamsInput },
   props: {
     formularioProps: {
@@ -81,7 +80,7 @@ export default {
         documento: '',
         telefone: '',
         email: '',
-        ativo: false
+        ativo: true
       },
       rules: {
         nome: [rulesRequired],
@@ -98,7 +97,7 @@ export default {
         documento: '',
         telefone: '',
         email: '',
-        ativo: false
+        ativo: true
       }
     },
 

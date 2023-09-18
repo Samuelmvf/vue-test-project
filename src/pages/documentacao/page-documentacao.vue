@@ -8,10 +8,6 @@
 
 <script>
 export default {
-  name: 'page-documentacao',
-  data () {
-    return {
-    }
-  },
+  name: 'page-documentacao'
 }
 </script>

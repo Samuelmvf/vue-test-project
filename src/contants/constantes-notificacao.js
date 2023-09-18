@@ -1,0 +1,17 @@
+export const NOTIFICACAO_TIPOS = {
+  SUCESSO: 'SUCESSO',
+  ERRO: 'ERRO',
+  AVISO: 'AVISO'
+}
+export const NOTIFICACAO_CORES = {
+  SUCESSO: 'success',
+  ERRO: 'error',
+  AVISO: 'warning'
+}
+
+export const NOTIFICACAO_PADRAO = {
+  TIMEOUT: 2000,
+  COR: NOTIFICACAO_CORES.SUCESSO
+}
+
+export const DELAY_SAIDA_ANIMACAO_NOTIFICACAO = 200

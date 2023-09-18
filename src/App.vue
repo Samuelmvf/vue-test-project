@@ -1,8 +1,8 @@
 <template>
-  <sams-header />
+  <sams-header @click="this.emitirNotificacao('SUCCESS', 'BOA SIMON')"/>
   <router-view></router-view>
   <sams-loading ref="loadingApp"></sams-loading>
-  <sams-notificacao v-if="notificacao.ativa" :notificacao="notificacao" @resetNotification="resetNotification"></sams-notificacao>
+  <sams-notificacao ref="notificacaoApp"></sams-notificacao>
   <sams-footer />
 </template>
 
@@ -16,6 +16,7 @@ import SamsNotificacao from "@/components/notificacao/sams-notificacao.vue";
 export default {
   name: 'App',
   components: { SamsHeader, SamsLoading, SamsNotificacao, SamsFooter },
+
   provide () {
     return {
       emitirNotificacao: this.emitirNotificacao,
@@ -23,29 +24,13 @@ export default {
     }
   },
 
-  data: () => ({
-    notificacao: {
-      ativa: false,
-      mensagem: '',
-      propriedades: {}
-    }
-  }),
-
   methods: {
-    setAppLoading(loading) {
+    emitirNotificacao (tipo, mensagem, timeout) {
+      this.$refs.notificacaoApp.emitirNotificacao(tipo, mensagem, timeout)
+    },
+
+    setAppLoading (loading) {
       this.$refs.loadingApp.setLoading(loading)
-    },
-
-    emitirNotificacao({ mensagem, propriedades }) {
-      this.notificacao.ativa = true
-      this.notificacao.mensagem = mensagem
-      this.notificacao.propriedades = propriedades
-    },
-
-    resetNotification () {
-      this.notificacao.ativa = false
-      this.notificacao.mensagem = ''
-      this.notificacao.propriedades = {}
     }
   }
 

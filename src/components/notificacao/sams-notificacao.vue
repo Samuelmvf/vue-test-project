@@ -1,33 +1,55 @@
 <template>
-  <!-- TODO implementar um componente de notificação que permite multiplas notificações -->
+  <!-- Implementar um componente de notificação que permite multiplas notificações -->
   <v-snackbar
     max-height="60"
-    v-model="computedNotification.ativa"
-    v-bind="computedNotification.propriedades"
+    v-model="notificacao.ativa"
+    :color="notificacao.color"
+    :timeout="notificacao.timeout"
     @update:modelValue="limparNotificacao"
   >
-    {{ computedNotification.mensagem }}
+    {{ notificacao.mensagem }}
   </v-snackbar>
 </template>
 
 <script>
+
+import {
+  NOTIFICACAO_PADRAO,
+  DELAY_SAIDA_ANIMACAO_NOTIFICACAO,
+  NOTIFICACAO_CORES
+} from "@/contants/constantes-notificacao";
+
 export default {
   name: 'sams-notificacao',
-  props: {
+  data: () => ({
     notificacao: {
-      type: Object,
-      required: true
+      ativa: false,
+      mensagem: '',
+      color: NOTIFICACAO_PADRAO.COR,
+      timeout: NOTIFICACAO_PADRAO.TIMEOUT,
     }
-  },
-  computed: {
-    computedNotification () {
-      return this.notificacao
-    }
-  },
+  }),
   methods: {
     limparNotificacao () {
-      if (!this.computedNotification.ativa)
-        this.$emit('resetNotification')
+      if (!this.notificacao.ativa) {
+        setTimeout(() => {
+          this.resetarNotificacao()
+        }, DELAY_SAIDA_ANIMACAO_NOTIFICACAO)
+      }
+    },
+
+    resetarNotificacao () {
+      this.notificacao.ativa = false
+      this.notificacao.mensagem = ''
+      this.notificacao.color = ''
+      this.notificacao.timeout = NOTIFICACAO_PADRAO.TIMEOUT
+    },
+
+    emitirNotificacao (tipo, message, timeout) {
+      this.notificacao.ativa = true
+      this.notificacao.mensagem = message
+      this.notificacao.color = NOTIFICACAO_CORES[tipo] || NOTIFICACAO_PADRAO.COR
+      this.notificacao.timeout = timeout || NOTIFICACAO_PADRAO.TIMEOUT
     }
   }
 }

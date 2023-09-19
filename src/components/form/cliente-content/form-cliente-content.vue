@@ -24,7 +24,7 @@
           class="mb-2 col-sm-12 col-md-6"
           label="Telefone*"
           v-model="cliente.telefone"
-          :maxlength="13"
+          type="number"
           v-bind="formularioProps.inputPropsCustomizadas?.telefone"
         ></sams-input>
 

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import MenuDropdown from "@/components/menu-dropdown/menu-dropdown.vue";
+import MenuDropdown from "@/components/menu/dropdown/menu-dropdown.vue";
 
 export default {
   name: 'menu-web',

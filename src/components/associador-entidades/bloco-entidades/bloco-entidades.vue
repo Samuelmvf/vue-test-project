@@ -2,7 +2,7 @@
   <v-card variant="elevated" class="col-md-5 col-sm-12">
     <v-list-subheader class="justify-center font-weight-black mt-3">{{ titulo }}</v-list-subheader>
     <v-divider></v-divider>
-    <v-list class="mb-4" select-strategy="classic" :max-height="300">
+    <v-list class="mb-4" select-strategy="classic" :min-height="300" :max-height="500">
       <v-list-item
         v-for="entidade in entidades"
         :key="entidade.id"

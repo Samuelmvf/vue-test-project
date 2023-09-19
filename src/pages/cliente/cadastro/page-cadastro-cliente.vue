@@ -12,7 +12,7 @@ import { cadastrarCliente } from '@/services/cliente-service'
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue";
-import FormClienteContent from "@/components/form-cliente-content/form-cliente-content.vue";
+import FormClienteContent from "@/components/form/cliente-content/form-cliente-content.vue";
 
 export default {
   name: 'page-cadastro-cliente',

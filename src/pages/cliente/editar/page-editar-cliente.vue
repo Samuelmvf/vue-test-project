@@ -11,7 +11,7 @@
 import { buscarClientePorId, editarCliente} from "@/services/cliente-service"
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
-import FormClienteContent from "@/components/form-cliente-content/form-cliente-content.vue";
+import FormClienteContent from "@/components/form/cliente-content/form-cliente-content.vue";
 import {NOTIFICACAO_TIPOS} from "@/contants/constantes-notificacao";
 
 export default {

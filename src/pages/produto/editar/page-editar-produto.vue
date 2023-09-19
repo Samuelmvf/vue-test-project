@@ -12,7 +12,7 @@ import { buscarProdutoPorId, editarProduto} from "@/services/produto-service";
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
-import FormProdutoContent from "@/components/form-produto-content/form-produto-content.vue";
+import FormProdutoContent from "@/components/form/produto-content/form-produto-content.vue";
 
 export default {
   name: 'page-editar-produto',

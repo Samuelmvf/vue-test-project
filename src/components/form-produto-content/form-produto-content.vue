@@ -8,7 +8,6 @@
           class="mb-2 col"
           label="Nome*"
           v-model="produto.nome"
-          v-bind="formularioProps.inputPropsCustomizadas?.nome"
         ></sams-input>
 
         <v-switch
@@ -67,9 +66,9 @@ export default {
       }
     },
 
-    setProduto (produto) {
-      this.produto.nome = produto.nome
-      this.produto.ativo = produto.ativo
+    setProduto ({ nome, ativo }) {
+      this.produto.nome = nome
+      this.produto.ativo = ativo
     },
   },
   created () {

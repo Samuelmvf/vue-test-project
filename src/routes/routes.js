@@ -1,6 +1,7 @@
 import {
   PageCliente, PageCadastroCliente, PageEditarCliente, PageAssociarProduto,
-  PageDocumentacao, PageNotFound, PageProduto, PageListagemCliente
+  PageProduto, PageCadastroProduto, PageEditarProduto, PageListagemProduto,
+  PageDocumentacao, PageNotFound, PageListagemCliente
 } from "@/pages"
 
 const routes = [
@@ -27,7 +28,11 @@ const routes = [
   {
     path: '/produto',
     component: PageProduto,
-    children: []
+    children: [
+      { path: '', component: PageListagemProduto },
+      { path: 'cadastrar', component: PageCadastroProduto },
+      { path: ':id', component: PageEditarProduto }
+    ]
   },
   {
     path: '/:pathMatch(.*)*',

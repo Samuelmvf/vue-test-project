@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import SamsInput from "@/components/input/sams-input.vue";
+import SamsInput from "@/components/input/sams-input.vue"
 import { rulesRequired, rulesEmail, rulesTelefone } from '@/utils/rules'
 
 export default {
@@ -101,12 +101,12 @@ export default {
       }
     },
 
-    setCliente (cliente) {
-      this.cliente.nome = cliente.nome
-      this.cliente.documento = cliente.documento
-      this.cliente.telefone = cliente.telefone
-      this.cliente.email = cliente.email
-      this.cliente.ativo = cliente.ativo
+    setCliente ({ nome, documento, telefone, email, ativo }) {
+      this.cliente.nome = nome
+      this.cliente.documento = documento
+      this.cliente.telefone = telefone
+      this.cliente.email = email
+      this.cliente.ativo = ativo
     },
   },
   created () {

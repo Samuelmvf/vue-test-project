@@ -70,11 +70,15 @@ export default {
 
     buscarCliente () {
       this.clienteId = this.$route.params.id
+      this.setAppLoading(true)
+
       buscarClientePorId(this.clienteId)
         .then(response => {
+          this.setAppLoading(false)
           this.$refs.formClienteContent.setCliente(response.data.cliente)
         })
         .catch(() => {
+          this.setAppLoading(false)
           this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Ocorreu um erro ao buscar cliente')
           this.$router.push('/cliente')
         })

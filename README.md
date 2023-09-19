@@ -15,7 +15,7 @@ Também foram aplicados conceitos de clean code e arquitetura limpa no projeto c
 - Responsabilidade única
 - Inversão de dependência
 - DRY
-- Design Patterns como: Factory e Strategy
+- Design Patterns como: Factory Method e Strategy
 
 
 ## Instalação
@@ -23,7 +23,11 @@ Também foram aplicados conceitos de clean code e arquitetura limpa no projeto c
 npm install
 ```
 
-### Para rodar codigo em modo de desenvolvimento
+## Importante
+O sistema faz uso do MirageJS que está configurado por default para rodar na porta 8080, 
+então ao executar checar se o sistema está rodando no http://localhost:8080
+
+### Para executar o projeto
 ```
 npm run serve
 ```

@@ -9,6 +9,7 @@ Para realizar o projeto foi utilizado as seguintes tecnologias:
 - Miragejs
 - HTML5
 - SCSS
+- GIT Flow
 
 Também foram aplicados conceitos de clean code e arquitetura limpa no projeto como:
 

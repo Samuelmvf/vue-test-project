@@ -6,7 +6,7 @@ const rulesEmail =  (val) => {
   return emailRegex.test(val) || 'O email digitado é inválido.'
 }
 const rulesTelefone = (val) => {
-  return val.length >= 10 || 'O telefone digitado é inválido.'
+  return (val + "").length >= 8 || 'O telefone digitado é inválido.'
 }
 
 export {

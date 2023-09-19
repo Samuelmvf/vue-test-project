@@ -1,6 +1,6 @@
 <template>
   <div class="center max-app-size py-10 px-4">
-    <titulo-secao texto="Editar de clientes"/>
+    <titulo-secao texto="Editar cliente"/>
     <v-form ref="formEditarCliente" class="mt-4">
       <form-cliente-content ref="formClienteContent" :formulario-props="factoryFormEdicaoCliente()"/>
     </v-form>

@@ -80,7 +80,6 @@ export default  {
       immediate: true,
       handler (novasEntidades) {
         this.montarObjetoSelecionadas(novasEntidades)
-        console.log(this.titulo, this.entidadesSelecionadas)
       }
     }
   }

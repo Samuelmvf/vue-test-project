@@ -1,15 +1,40 @@
 <template>
   <div class="d-flex justify-center align-center flex-md-column col-md-2 col-sm-12 gap-2 my-3">
-    <v-btn @click="$emit('realizarAcao', 'associarSelecionadas')" density="compact" :icon="$vuetify.display.xs ? 'mdi-chevron-down' : 'mdi-chevron-right'" />
-    <v-btn @click="$emit('realizarAcao', 'associarTodas')" density="compact" :icon="$vuetify.display.xs ? 'mdi-chevron-double-down' : 'mdi-chevron-double-right'" />
-    <v-btn @click="$emit('realizarAcao', 'desassociarSelecionadas')" density="compact" :icon="$vuetify.display.xs ? 'mdi-chevron-up' : 'mdi-chevron-left'" />
-    <v-btn @click="$emit('realizarAcao', 'desassociarTodas')" density="compact" :icon="$vuetify.display.xs ? 'mdi-chevron-double-up' : 'mdi-chevron-double-left'" />
+    <v-btn
+      v-for="(button, i) in factoryMenu()"
+      :key="button.iconXs + i"
+      @click="button.acao"
+      density="compact"
+      :icon="$vuetify.display.xs ? button.iconXs : button.normalIcon"
+    />
   </div>
 </template>
 
 <script>
+const NOME_EVENTO_PAI = 'realizarAcao'
 
 export default {
-  name: 'menu-gerenciador-entidades'
+  name: 'menu-gerenciador-entidades',
+  methods: {
+    factoryMenu () {
+      return [{
+        acao: () => this.$emit(NOME_EVENTO_PAI, 'associarSelecionadas'),
+        iconXs: 'mdi-chevron-down',
+        normalIcon: 'mdi-chevron-right'
+      },{
+        acao: () => this.$emit(NOME_EVENTO_PAI, 'associarTodas'),
+        iconXs: 'mdi-chevron-double-down',
+        normalIcon: 'mdi-chevron-double-right'
+      },{
+        acao: () => this.$emit(NOME_EVENTO_PAI, 'desassociarSelecionadas'),
+        iconXs: 'mdi-chevron-up',
+        normalIcon: 'mdi-chevron-left'
+      },{
+        acao: () => this.$emit(NOME_EVENTO_PAI, 'desassociarTodas'),
+        iconXs: 'mdi-chevron-double-up',
+        normalIcon: 'mdi-chevron-double-left'
+      }]
+    }
+  }
 }
 </script>

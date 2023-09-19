@@ -7,8 +7,7 @@ import {
 const routes = [
   {
     path: '/',
-    component: PageDocumentacao,
-    children: []
+    component: PageDocumentacao
   },
   {
     path: '/cliente',
@@ -36,8 +35,7 @@ const routes = [
   },
   {
     path: '/:pathMatch(.*)*',
-    component: PageNotFound,
-    children: []
+    component: PageNotFound
   }
 ]
 

@@ -32,7 +32,7 @@ export default {
           }
         },
         acoes: [{
-          nome: 'Editar',
+          nome: 'Salvar',
           class: 'bg-success',
           func: (dadosCliente) => {
             this.$refs.formEditarCliente.validate()

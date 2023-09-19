@@ -15,8 +15,13 @@ const routes = [
     children: [
       { path: '', component: PageListagemCliente },
       { path: 'cadastrar', component: PageCadastroCliente },
-      { path: 'associar-produto', component: PageAssociarProduto},
-      { path: ':id', component: PageEditarCliente}
+      {
+        path: ':id',
+        children: [
+          { path: '', component: PageEditarCliente},
+          { path: 'associar-produto', component: PageAssociarProduto},
+        ]
+      }
     ]
   },
   {

@@ -44,10 +44,22 @@ ul {
 }
 
 .section-min-height {
+  height: calc(100vh - 4rem);
   min-height: calc(100vh - 4rem);
 }
 
 .bg-background-gradient {
   background: #ECE9E6;
   background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+}
+
+.form-card-content {
+  height: calc(100% - 3.25rem);
+  min-height: calc(100% - 3.25rem);
+}
+
+.form-card-actions {
+  border-top: 1px solid #ECE9E6;
+  height: 3.25rem;
+  max-height: 3.25rem;
 }

@@ -16,19 +16,64 @@ createServer({
         {
           id: "1",
           nome: 'Samuel Maia',
-          documento: '13199879667',
-          telefone: '3134869927',
-          email: 'samuelmvf@gmail.com',
+          documento: '123.456.789-10',
+          telefone: '(31) 3486-9927',
+          email: 'samuel.maia@gmail.com',
           ativo: true,
           produtos: []
         },
         {
           id: "2",
           nome: 'Lorem Ipsum',
-          documento: '999999',
-          telefone: '31999998888',
-          email: 'loremipsum@loremipsum.com.br',
+          documento: '987.654.321-00',
+          telefone: '(31) 99999-8888',
+          email: 'lorem.ipsum@loremipsum.com.br',
           ativo: true,
+          produtos: []
+        },
+        {
+          id: "3",
+          nome: 'Danilo Santos',
+          documento: '111.222.333-44',
+          telefone: '(31) 99999-8888',
+          email: 'danilo.santos@loremipsum.com.br',
+          ativo: true,
+          produtos: []
+        },
+        {
+          id: "4",
+          nome: 'Ketsia Martins',
+          documento: '555.666.777-88',
+          telefone: '(31) 99999-8888',
+          email: 'ketsia.martins@loremipsum.com.br',
+          ativo: true,
+          produtos: []
+        },
+        {
+          id: "5",
+          nome: 'Fernandes Tourino',
+          documento: '999.888.777-66',
+          telefone: '(31) 99999-8888',
+          email: 'fernandes.tourino@loremipsum.com.br',
+          ativo: true,
+          produtos: []
+        },
+        {
+          id: "6",
+          nome: 'Joaquin Perrela',
+          documento: '777.888.999-00',
+          telefone: '(31) 99999-8888',
+          email: 'joaquin.perrela@loremipsum.com.br',
+          ativo: true,
+          produtos: []
+        },
+        {
+          id: "7",
+          nome: 'Scott Lander',
+          documento: '222.333.444-55',
+          telefone: '(31) 99999-8888',
+          email: 'scott.lander@loremipsum.com.br',
+          ativo: false,
           produtos: []
         }
       ],
@@ -36,6 +81,14 @@ createServer({
         {
           id: "1",
           nome: "Stone station - Plataforma online",
+          ativo: true
+        },{
+          id: "2",
+          nome: "Mailing List",
+          ativo: true
+        },{
+          id: "3",
+          nome: "Enriquecimento de dados",
           ativo: true
         }
       ]

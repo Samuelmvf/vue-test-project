@@ -38,10 +38,6 @@ export default {
               nome: 'Listar',
               icon: 'mdi-text-box-outline',
               acao: () => this.$router.push('/cliente')
-            }, {
-              nome: 'Associar produto',
-              icon: 'mdi-link-box-variant',
-              acao: () => this.$router.push('/cliente/associar-produto')
             }
           ],
           subtitulo: 'Serviços'

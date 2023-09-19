@@ -1,5 +1,5 @@
 <template>
-  <sams-header @click="this.emitirNotificacao('SUCCESS', 'BOA SIMON')"/>
+  <sams-header />
   <router-view></router-view>
   <sams-loading ref="loadingApp"></sams-loading>
   <sams-notificacao ref="notificacaoApp"></sams-notificacao>

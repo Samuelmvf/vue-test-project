@@ -47,7 +47,7 @@
       </div>
     </v-card-item>
 
-    <v-card-actions style="border-top: 1px solid #ECE9E6">
+    <v-card-actions class="form-card-actions">
       <v-btn
         v-for="(acao, i) in formularioProps.acoes"
         :key="acao.nome + i"

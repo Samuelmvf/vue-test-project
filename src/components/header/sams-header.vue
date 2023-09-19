@@ -2,7 +2,7 @@
   <header class="bg-primary">
     <nav class="px-4 max-app-size d-flex justify-content-between">
       <div class="logo-content" @click="$router.push('/')">
-        <logo-img :height="44" v-if="isMobileView"/>
+        <logo-img :height="44" v-if="$vuetify.display.xs"/>
         <logo-completo v-else/>
       </div>
       <sams-menu />
@@ -11,20 +11,13 @@
 </template>
 
 <script>
-import { useDisplay } from "vuetify";
 import SamsMenu from "@/components/menu/sams-menu.vue";
 import LogoCompleto from "@/components/logo/completo/logo-completo.vue";
 import LogoImg from "@/components/logo/img/logo-img.vue";
 
 export default {
   name: 'app-header',
-  components: { LogoImg, SamsMenu, LogoCompleto },
-  computed: {
-    isMobileView () {
-      const { xs } = useDisplay()
-      return xs.value
-    }
-  }
+  components: { LogoImg, SamsMenu, LogoCompleto }
 }
 </script>
 

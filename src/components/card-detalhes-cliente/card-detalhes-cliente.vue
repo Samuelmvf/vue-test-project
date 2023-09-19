@@ -1,7 +1,7 @@
 <template>
-  <div class="col-12" >
-    <h1>INFORMAÇÕES DO CLIENTE</h1>
-    <v-card class="pa-4 mx-3 mt-2">
+  <div class="col-12 " >
+    <h1 class="ml-4">INFORMAÇÕES DO CLIENTE</h1>
+    <v-card class="pa-4 mx-3 mt-2 bg-grey-lighten-4">
       <p><span class="font-weight-medium text-client-attributes">Nome: </span>{{ nome }}</p>
       <p><span class="font-weight-medium text-client-attributes">Documento: </span>{{ documento }}</p>
     </v-card>

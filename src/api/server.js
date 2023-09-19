@@ -80,7 +80,7 @@ createServer({
       produtos: [
         {
           id: "1",
-          nome: "Stone station - Plataforma online",
+          nome: "Stone station",
           ativo: true
         },{
           id: "2",

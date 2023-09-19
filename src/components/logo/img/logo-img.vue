@@ -19,12 +19,14 @@
 <script>
 export default {
   name: 'logo-img',
+
   props: {
     height: {
       type: Number,
       required: true
     }
   },
+
   computed: {
     width () {
       return this.height * 0.915

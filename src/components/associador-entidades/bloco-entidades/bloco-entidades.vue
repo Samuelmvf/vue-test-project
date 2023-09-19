@@ -1,8 +1,8 @@
 <template>
-  <v-card variant="elevated" class="col-md-5 col-sm-12">
+  <v-card variant="elevated" class="bg-grey-lighten-4 col-md-5 col-sm-12">
     <v-list-subheader class="justify-center font-weight-black mt-3">{{ titulo }}</v-list-subheader>
     <v-divider></v-divider>
-    <v-list class="mb-4" select-strategy="classic" :min-height="300" :max-height="500">
+    <v-list class="mb-4 bg-grey-lighten-4" select-strategy="classic" :min-height="300" :max-height="500">
       <v-list-item
         v-for="entidade in entidades"
         :key="entidade.id"
@@ -17,7 +17,16 @@
             ></v-checkbox-btn>
           </v-list-item-action>
         </template>
-        <v-list-item-title>{{ entidade.nome }}</v-list-item-title>
+        <v-list-item-title class="text-entidade-item">
+          {{ entidade.nome }}
+          <v-tooltip
+            v-if="entidade.nome.length > 30"
+            activator="parent"
+            :text="entidade.nome"
+            location="top"
+            open-delay="500"
+          />
+        </v-list-item-title>
       </v-list-item>
     </v-list>
   </v-card>
@@ -85,3 +94,11 @@ export default  {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.text-entidade-item {
+  font-size: .925rem;
+  font-weight: 500;
+  color: var(--bs-gray-700);
+}
+</style>

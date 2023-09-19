@@ -14,9 +14,11 @@
 <script>
 export default {
   name: 'sams-loading',
+
   data: () => ({
     isLoading: false,
   }),
+
   methods: {
     setLoading (loading) {
       this.isLoading = loading

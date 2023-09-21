@@ -1,6 +1,7 @@
 <template>
   <div class="center max-app-size py-10 px-4">
     <titulo-secao texto="Cadastro de produto"/>
+
     <v-form ref="formCadastroProduto" class="mt-4">
       <form-produto-content :formulario-props="factoryFormCadastroProduto()"/>
     </v-form>
@@ -16,7 +17,9 @@ import FormProdutoContent from "@/components/form/produto-content/form-produto-c
 
 export default {
   name: 'page-cadastro-produto',
+
   components: { TituloSecao, FormProdutoContent},
+
   inject: [ 'setAppLoading', 'emitirNotificacao' ],
 
   methods: {

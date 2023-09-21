@@ -1,6 +1,7 @@
 <template>
   <div class="center max-app-size py-10 px-4">
     <titulo-secao texto="Editar produto"/>
+
     <v-form ref="formEditarProduto" class="mt-4">
       <form-produto-content ref="formProdutoContent" :formulario-props="factoryFormEdicaoProduto()"/>
     </v-form>
@@ -16,7 +17,9 @@ import FormProdutoContent from "@/components/form/produto-content/form-produto-c
 
 export default {
   name: 'page-editar-produto',
+
   components: { TituloSecao, FormProdutoContent },
+
   inject: [ 'setAppLoading', 'emitirNotificacao' ],
 
   data: () => ({

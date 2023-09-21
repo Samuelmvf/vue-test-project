@@ -1,12 +1,18 @@
 <template>
   <div class="center max-app-size py-10 px-4">
     <titulo-secao texto="Associar produto"/>
+
     <v-card
       class="mt-7"
     >
       <v-card-item class="row">
-        <card-detalhes-cliente :nome="cliente.nome" :documento="cliente.documento" />
-        <v-divider class="my-3"></v-divider>
+        <detalhes-entidade
+          titulo="Informações do cliente"
+          :entidade-atributos="{ nome: cliente.nome, documento: cliente.documento}"
+        />
+
+        <v-divider class="my-3" />
+
         <associador-entidades
           v-if="todosProdutos.length"
           :entidadadesAssociadas="cliente.produtos"
@@ -31,12 +37,12 @@ import { buscarTodosProdutos } from "@/services/produto-service"
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
-import CardDetalhesCliente from "@/components/card-detalhes-cliente/card-detalhes-cliente.vue"
+import DetalhesEntidade from "@/components/detalhes-entidade/detalhes-entidade.vue";
 import AssociadorEntidades from "@/components/associador-entidades/associador-entidades.vue"
 
 export default {
   name: 'page-associar-produto',
-  components: { AssociadorEntidades, CardDetalhesCliente, TituloSecao },
+  components: { AssociadorEntidades, DetalhesEntidade, TituloSecao },
   inject: ['setAppLoading', 'emitirNotificacao'],
 
   data: () => ({

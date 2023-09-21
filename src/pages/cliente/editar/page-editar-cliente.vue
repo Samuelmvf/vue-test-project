@@ -1,6 +1,7 @@
 <template>
   <div class="center max-app-size py-10 px-4">
     <titulo-secao texto="Editar cliente"/>
+
     <v-form ref="formEditarCliente" class="mt-4">
       <form-cliente-content ref="formClienteContent" :formulario-props="factoryFormEdicaoCliente()"/>
     </v-form>
@@ -9,14 +10,16 @@
 
 <script>
 import { buscarClientePorId, editarCliente} from "@/services/cliente-service"
+import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
 import FormClienteContent from "@/components/form/cliente-content/form-cliente-content.vue";
-import {NOTIFICACAO_TIPOS} from "@/contants/constantes-notificacao";
 
 export default {
   name: 'page-editar-cliente',
+
   components: { TituloSecao, FormClienteContent },
+
   inject: [ 'setAppLoading', 'emitirNotificacao' ],
 
   data: () => ({
@@ -75,13 +78,24 @@ export default {
       buscarClientePorId(this.clienteId)
         .then(response => {
           this.setAppLoading(false)
-          this.$refs.formClienteContent.setCliente(response.data.cliente)
+          const clienteTratado = this.getClienteTratado(response.data.cliente)
+          this.$refs.formClienteContent.setCliente(clienteTratado)
         })
         .catch(() => {
           this.setAppLoading(false)
           this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Ocorreu um erro ao buscar cliente')
           this.$router.push('/cliente')
         })
+    },
+
+    getClienteTratado (cliente) {
+      return {
+        nome: cliente.nome,
+        documento: cliente.documento,
+        telefone: cliente.telefone,
+        email: cliente.email,
+        ativo: cliente.ativo
+      }
     }
   },
 

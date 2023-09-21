@@ -67,12 +67,14 @@ import { rulesRequired, rulesEmail, rulesTelefone } from '@/utils/rules'
 export default {
   name: 'form-cliente-content',
   components: { SamsInput },
+
   props: {
     formularioProps: {
       type: Object,
       required: true
     }
   },
+
   data () {
     return {
       cliente: {
@@ -90,6 +92,7 @@ export default {
       }
     }
   },
+
   methods: {
     resetarVueData () {
       this.cliente = {
@@ -101,14 +104,11 @@ export default {
       }
     },
 
-    setCliente ({ nome, documento, telefone, email, ativo }) {
-      this.cliente.nome = nome
-      this.cliente.documento = documento
-      this.cliente.telefone = telefone
-      this.cliente.email = email
-      this.cliente.ativo = ativo
+    setCliente (cliente) {
+      this.cliente = cliente
     },
   },
+
   created () {
     this.resetarVueData()
   }

@@ -1,6 +1,7 @@
 <template>
   <div class="center max-app-size py-10 px-4">
     <titulo-secao texto="Cadastro de clientes"/>
+
     <v-form ref="formCadastroCliente" class="mt-4">
       <form-cliente-content :formulario-props="factoryFormCadastroCliente()"/>
     </v-form>
@@ -46,7 +47,6 @@ export default {
         id: undefined,
         ...dadosCliente
       }
-
       this.setAppLoading(true)
       cadastrarCliente(cadastroPayload)
         .then(() => {

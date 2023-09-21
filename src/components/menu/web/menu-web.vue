@@ -16,12 +16,14 @@ import MenuDropdown from "@/components/menu/dropdown/menu-dropdown.vue";
 
 export default {
   name: 'menu-web',
+
   props: {
     subMenus: {
       type: Array,
       required: true
     }
   },
+
   components: { MenuDropdown }
 }
 </script>

@@ -24,12 +24,14 @@ import BlocoMenu from "@/components/bloco-menu/bloco-menu.vue";
 
 export default {
   name: 'menu-mobile',
+
   props: {
     subMenus: {
       type: Array,
       required: true
     }
   },
+
   components: { BlocoMenu }
 }
 </script>

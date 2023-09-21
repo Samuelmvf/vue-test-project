@@ -1,5 +1,4 @@
 <template>
-  <!-- Implementar um componente de notificação que permite multiplas notificações -->
   <v-snackbar
     max-height="60"
     v-model="notificacao.ativa"
@@ -12,7 +11,6 @@
 </template>
 
 <script>
-
 import {
   NOTIFICACAO_PADRAO,
   DELAY_SAIDA_ANIMACAO_NOTIFICACAO,
@@ -21,6 +19,7 @@ import {
 
 export default {
   name: 'sams-notificacao',
+
   data: () => ({
     notificacao: {
       ativa: false,
@@ -29,6 +28,7 @@ export default {
       timeout: NOTIFICACAO_PADRAO.TIMEOUT,
     }
   }),
+
   methods: {
     limparNotificacao () {
       if (!this.notificacao.ativa) {

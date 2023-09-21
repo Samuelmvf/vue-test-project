@@ -1,28 +1,23 @@
 <template>
-  <menu-mobile v-if="isMobileView" :sub-menus="subMenus"/>
+  <menu-mobile v-if="$vuetify.display.xs" :sub-menus="subMenus"/>
   <menu-web v-else :sub-menus="subMenus"/>
 </template>
 
 <script>
-import { useDisplay } from "vuetify";
-
 import MenuWeb from "@/components/menu/web/menu-web.vue";
 import MenuMobile from "@/components/menu/mobile/menu-mobile.vue";
 
 export default {
   name: 'app-menu',
+
   components: { MenuWeb, MenuMobile },
+
   data () {
     return {
       subMenus: this.factorySubMenus()
     }
   },
-  computed: {
-    isMobileView () {
-      const { xs } = useDisplay()
-      return xs.value
-    }
-  },
+
   methods: {
     factorySubMenus ()  {
       return [

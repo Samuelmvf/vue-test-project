@@ -41,12 +41,14 @@ import { rulesRequired } from '@/utils/rules'
 export default {
   name: 'form-produto-content',
   components: { SamsInput },
+
   props: {
     formularioProps: {
       type: Object,
       required: true
     }
   },
+
   data () {
     return {
       produto: {
@@ -58,6 +60,7 @@ export default {
       }
     }
   },
+
   methods: {
     resetarVueData () {
       this.produto = {
@@ -71,6 +74,7 @@ export default {
       this.produto.ativo = ativo
     },
   },
+
   created () {
     this.resetarVueData()
   }

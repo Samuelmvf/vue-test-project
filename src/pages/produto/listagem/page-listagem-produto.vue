@@ -1,6 +1,7 @@
 <template>
   <div class="center max-app-size py-10 px-4 fill-height">
     <titulo-secao texto="Listagem de produtos"/>
+
     <v-card class="mt-4 list-content">
       <v-list class="form-card-content pt-4">
         <item-generico
@@ -14,6 +15,7 @@
           :acoes="getAcoesDisponiveisProduto()"
         />
       </v-list>
+
       <v-card-actions class="form-card-actions d-flex justify-center">
         <v-pagination
           v-model="paginacao.pagina"
@@ -29,6 +31,7 @@
 <script>
 import { buscarTodosProdutos } from "@/services/produto-service";
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
+
 import { paginacaoMixin } from "@/mixins/paginacao-mixin"
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
@@ -36,9 +39,13 @@ import ItemGenerico from "@/components/item-generico/item-generico.vue"
 
 export default {
   name: 'page-listagem-produto',
+
   components: { ItemGenerico, TituloSecao },
+
   inject: ['setAppLoading', 'emitirNotificacao'],
+
   mixins: [ paginacaoMixin ],
+
   methods: {
     buscarProdutos () {
       this.setAppLoading(true)
@@ -53,6 +60,7 @@ export default {
           this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Falha ao listar produtos. Tente novamente mais tarde.')
         })
     },
+
     getAcoesDisponiveisProduto () {
       return [{
         nome: 'Editar',

@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-list-subheader v-if="titulo">{{ titulo }}</v-list-subheader>
+
     <v-list-item
       v-for="(item, i) in actions"
       :key="i"

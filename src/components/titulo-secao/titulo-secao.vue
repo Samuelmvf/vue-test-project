@@ -8,6 +8,7 @@
 <script>
 export default {
   name: 'titulo-secao',
+
   props: {
     texto: {
       type: String,
@@ -24,6 +25,7 @@ export default {
     border-radius: 0.35rem;
     user-select: none;
   }
+
   h1 {
     font-family: $fontTitle;
     font-size: 2.5rem;

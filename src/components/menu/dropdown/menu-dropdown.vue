@@ -24,6 +24,7 @@ import BlocoMenu from "@/components/bloco-menu/bloco-menu.vue";
 export default {
   name: 'menu-dropdown',
   components: { BlocoMenu },
+
   props: {
     nome: {
       type: String,

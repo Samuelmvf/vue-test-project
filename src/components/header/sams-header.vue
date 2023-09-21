@@ -5,6 +5,7 @@
         <logo-img :height="44" v-if="$vuetify.display.xs"/>
         <logo-completo v-else/>
       </div>
+
       <sams-menu />
     </nav>
   </header>

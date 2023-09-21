@@ -1,7 +1,10 @@
 <template>
   <v-card variant="elevated" class="bg-grey-lighten-4 col-md-5 col-sm-12">
+
     <v-list-subheader class="justify-center font-weight-black mt-3">{{ titulo }}</v-list-subheader>
-    <v-divider></v-divider>
+
+    <v-divider />
+
     <v-list class="mb-4 bg-grey-lighten-4" select-strategy="classic" :min-height="300" :max-height="500">
       <v-list-item
         v-for="entidade in entidades"
@@ -17,6 +20,7 @@
             ></v-checkbox-btn>
           </v-list-item-action>
         </template>
+
         <v-list-item-title class="text-entidade-item">
           {{ entidade.nome }}
           <v-tooltip

@@ -31,8 +31,7 @@
 
 <script>
 
-import { buscarClientePorId, editarCliente } from "@/services/cliente-service"
-import { buscarTodosProdutos } from "@/services/produto-service"
+import { ClienteRepository, ProdutoRepository } from "@/repository"
 
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
 
@@ -63,7 +62,7 @@ export default {
   methods: {
     buscarRecursosAssociacaoProdutos () {
       this.setAppLoading(true)
-      Promise.all([buscarClientePorId(this.$route.params.id), buscarTodosProdutos()])
+      Promise.all([ClienteRepository.buscarPorId(this.$route.params.id), ProdutoRepository.buscarTodos()])
         .then(responses => {
           this.setAppLoading(false)
           this.cliente = responses[0].data.cliente
@@ -71,7 +70,7 @@ export default {
         })
         .catch(() => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Falha ao carregar informações de associção de produto, tente novamente mais tarde.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Falha ao carregar informações de associação de produto, tente novamente mais tarde.')
           this.$router.push('/cliente')
         })
 
@@ -84,15 +83,15 @@ export default {
 
     salvarAssociacoes () {
       this.setAppLoading(true)
-      editarCliente(this.cliente)
+      ClienteRepository.editar(this.cliente.id, this.cliente)
         .then(() => {
           this.setAppLoading(false)
           this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Associações com produtos atualizadas com sucesso!')
           this.$router.push('/cliente')
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Falha ao atualizar associações, tente novamente mais tarde!')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
         })
     }
   },

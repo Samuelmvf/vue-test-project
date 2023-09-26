@@ -1,15 +1,40 @@
-import { createServer, Model } from 'miragejs'
+import { createServer, Model, Response } from 'miragejs'
+import { rulesEmail, rulesRequired } from "@/utils/rules";
 
 // Constantes para simular um atraso na respota da API
 // Podendo assim emitir ações de carregamento
 const TIMEOUT_GET_MS = 300
 const TIMEOUT_POST_PUT_DELETE_MS = 300
 
+const clienteRules = {
+  nome: [rulesRequired],
+  documento: [rulesRequired],
+  telefone: [rulesRequired],
+  email: [rulesRequired, rulesEmail]
+}
+
+const produtoRules = {
+  nome: [rulesRequired],
+}
+
+const checaEntidadeEstaInvalida = (entidade, rules) => {
+  debugger
+  const camposChecados = Object.entries(rules).reduce((acc, [key, value]) => {
+    value.forEach(regra => {
+      acc.push(regra(entidade[key]))
+    })
+    return acc
+  }, [])
+
+  return camposChecados.some(val => typeof val === 'string')
+}
+
 createServer({
   models: {
     cliente: Model,
     produto: Model
   },
+
   seeds(server) {
     server.db.loadData({
       clientes: [
@@ -96,7 +121,7 @@ createServer({
   },
 
   routes() {
-    this.namespace = 'api'
+    this.namespace = process.env.VUE_API_MIRAGE_API_PATH
 
     // CLIENTES
     this.get('/cliente', () => {
@@ -105,28 +130,49 @@ createServer({
 
     this.get("/cliente/:id", (schema, request) => {
       const id = request.params.id
-      return schema.find('cliente', id)
+      const cliente =  schema.find('cliente', id)
+
+      if (!cliente)
+        return new Response(404, {}, { message: 'Falha ao buscar o cliente. Tente novamente...' })
+
+      return cliente
     })
 
-    this.post('/cliente', (schema, request) => {
-      const cliente = JSON.parse(request.requestBody)
+    this.post('/cliente', (schema, { requestBody }) => {
+      const cliente = JSON.parse(requestBody)
 
       if (!Object.hasOwn(cliente, 'produtos')) {
         cliente.produtos = []
       }
-      return schema.create('cliente', cliente);
+
+      if (checaEntidadeEstaInvalida(cliente, clienteRules))
+        return new Response(400);
+      else
+        return schema.create('cliente', cliente);
+
     }, { timing: TIMEOUT_POST_PUT_DELETE_MS})
 
-    this.put('/cliente/:id', (schema, request) => {
-      const requestBody = JSON.parse(request.requestBody)
-      const id = request.params.id
+    this.put('/cliente/:id', (schema, { requestBody, params }) => {
+      const body = JSON.parse(requestBody)
+      const id = params.id
       const cliente = schema.find('cliente', id)
+
+      if (!cliente)
+        return new Response(404, {}, { message: 'Falha ao atualizar cliente, o cliente relatado não foi encontrado.' })
+      else if (checaEntidadeEstaInvalida(body, clienteRules))
+        return new Response(400)
+
       return cliente.update(requestBody)
     }, { timing: TIMEOUT_POST_PUT_DELETE_MS})
 
     this.delete('/cliente/:id', (schema, request) => {
       const id = request.params.id
-      return schema.find('cliente', id).destroy()
+      const cliente = schema.find('cliente', id)
+
+      if (!cliente)
+        return new Response(404, {}, { message: 'Falha ao deletar cliente, o cliente relatado não foi encontrado.' })
+
+      return cliente.destroy()
     }, { timing: TIMEOUT_POST_PUT_DELETE_MS})
 
     // PRODUTOS
@@ -136,24 +182,44 @@ createServer({
 
     this.get("/produto/:id", (schema, request) => {
       const id = request.params.id
-      return schema.find('produto', id)
+      const produto = schema.find('produto', id)
+
+      if (!produto)
+        return new Response(404, {}, { message: 'Falha ao buscar produto. Tente novamente...' })
+
+      return produto
     })
 
     this.post('/produto', (schema, request) => {
       const produto = JSON.parse(request.requestBody)
-      return schema.create('produto', produto);
+
+      if (checaEntidadeEstaInvalida(produto, produtoRules))
+        return new Response(400);
+      else
+        return schema.create('produto', produto);
     }, { timing: TIMEOUT_POST_PUT_DELETE_MS})
 
     this.put('/produto/:id', (schema, request) => {
       const requestBody = JSON.parse(request.requestBody)
       const id = request.params.id
       const produto = schema.find('produto', id)
+
+      if (!produto)
+        return new Response(404, {}, { message: 'Falha ao atualizar produto, o produto relatado não foi encontrado.' })
+      else if (checaEntidadeEstaInvalida(produto, produtoRules))
+        return new Response(400)
+
       return produto.update(requestBody)
     }, { timing: TIMEOUT_POST_PUT_DELETE_MS})
 
     this.delete('/produto/:id', (schema, request) => {
       const id = request.params.id
-      return schema.find('produto', id).destroy()
+      const produto = schema.find('produto', id)
+
+      if (!produto)
+        return new Response(404, {}, { message: 'Falha ao deletar produto, o produto relatado não foi encontrado.' })
+
+      return produto.destroy()
     }, { timing: TIMEOUT_POST_PUT_DELETE_MS})
   }
 })

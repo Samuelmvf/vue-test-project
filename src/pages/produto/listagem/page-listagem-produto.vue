@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { buscarTodosProdutos } from "@/services/produto-service";
+import { ProdutoRepository } from "@/repository"
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
 
 import { paginacaoMixin } from "@/mixins/paginacao-mixin"
@@ -49,15 +49,15 @@ export default {
   methods: {
     buscarProdutos () {
       this.setAppLoading(true)
-      buscarTodosProdutos()
+      ProdutoRepository.buscarTodos()
         .then(response => {
           this.setAppLoading(false)
           this.listaItens = response.data.produtos.sort((a, b) => b.id - a.id)
           this.paginacao.totalPaginas = this.getTotalDePaginas(this.listaItens.length)
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Falha ao listar produtos. Tente novamente mais tarde.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
         })
     },
 

@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { cadastrarCliente } from '@/services/cliente-service'
+import { ClienteRepository } from "@/repository"
+
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue";
@@ -48,15 +49,15 @@ export default {
         ...dadosCliente
       }
       this.setAppLoading(true)
-      cadastrarCliente(cadastroPayload)
+      ClienteRepository.cadastrar(cadastroPayload)
         .then(() => {
           this.setAppLoading(false)
           this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Cliente cadastrado com sucesso')
           this.$router.push('/cliente')
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Erro ao cadastrar um cliente, tente novamente mais tarde.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
         })
     }
   }

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { buscarClientePorId, editarCliente} from "@/services/cliente-service"
+import { ClienteRepository } from "@/repository"
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
@@ -59,15 +59,15 @@ export default {
       }
 
       this.setAppLoading(true)
-      editarCliente(edicaoPayload)
+      ClienteRepository.editar(this.clienteId, edicaoPayload)
         .then(() => {
           this.setAppLoading(false)
           this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Cliente atualizado com sucesso.')
           this.$router.push('/cliente')
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Tente novamente mais tarde.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
         })
     },
 
@@ -75,15 +75,15 @@ export default {
       this.clienteId = this.$route.params.id
       this.setAppLoading(true)
 
-      buscarClientePorId(this.clienteId)
+      ClienteRepository.buscarPorId(this.clienteId)
         .then(response => {
           this.setAppLoading(false)
           const clienteTratado = this.getClienteTratado(response.data.cliente)
           this.$refs.formClienteContent.setCliente(clienteTratado)
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Ocorreu um erro ao buscar cliente')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
           this.$router.push('/cliente')
         })
     },

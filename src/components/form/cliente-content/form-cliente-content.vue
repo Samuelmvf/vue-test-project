@@ -62,7 +62,7 @@
 
 <script>
 import SamsInput from "@/components/input/sams-input.vue"
-import { rulesRequired, rulesEmail, rulesTelefone } from '@/utils/rules'
+import { rulesRequired, rulesEmail } from '@/utils/rules'
 
 export default {
   name: 'form-cliente-content',
@@ -87,7 +87,7 @@ export default {
       rules: {
         nome: [rulesRequired],
         documento: [rulesRequired],
-        telefone: [rulesRequired, rulesTelefone],
+        telefone: [rulesRequired],
         email: [rulesRequired, rulesEmail]
       }
     }

@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { buscarTodosClientes } from "@/services/cliente-service"
+import { ClienteRepository } from "@/repository"
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
 
 import { paginacaoMixin } from "@/mixins/paginacao-mixin"
@@ -49,15 +49,15 @@ export default {
   methods: {
     buscarClientes () {
       this.setAppLoading(true)
-      buscarTodosClientes()
+      ClienteRepository.buscarTodos()
         .then(response => {
           this.setAppLoading(false)
           this.listaItens = response.data.clientes.sort((a, b) => b.id - a.id)
           this.paginacao.totalPaginas = this.getTotalDePaginas(this.listaItens.length)
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Falha ao listar clientes. Tente novamente mais tarde.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
         })
     },
 

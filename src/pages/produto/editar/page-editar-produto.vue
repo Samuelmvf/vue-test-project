@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { buscarProdutoPorId, editarProduto} from "@/services/produto-service";
-import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
+import { ProdutoRepository } from "@/repository"
+import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
-import FormProdutoContent from "@/components/form/produto-content/form-produto-content.vue";
+import FormProdutoContent from "@/components/form/produto-content/form-produto-content.vue"
 
 export default {
   name: 'page-editar-produto',
@@ -54,15 +54,15 @@ export default {
       }
 
       this.setAppLoading(true)
-      editarProduto(edicaoPayload)
+      ProdutoRepository.editar(this.produtoId, edicaoPayload)
         .then(() => {
           this.setAppLoading(false)
           this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Produto atualizado com sucesso!')
           this.$router.push('/produto')
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Erro ao atualizar produto. Tente novamente mais tarde.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
         })
     },
 
@@ -70,14 +70,14 @@ export default {
       this.produtoId = this.$route.params.id
       this.setAppLoading(true)
 
-      buscarProdutoPorId(this.produtoId)
+      ProdutoRepository.buscarPorId(this.produtoId)
         .then(response => {
           this.setAppLoading(false)
           this.$refs.formProdutoContent.setProduto(response.data.produto)
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Ocorreu um erro ao buscar produto.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
           this.$router.push('/produto')
         })
     }

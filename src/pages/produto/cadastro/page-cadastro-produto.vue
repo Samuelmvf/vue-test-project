@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { cadastrarProduto } from '@/services/produto-service'
+import { ProdutoRepository } from '@/repository'
 import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue";
@@ -51,15 +51,15 @@ export default {
       }
 
       this.setAppLoading(true)
-      cadastrarProduto(cadastroPayload)
+      ProdutoRepository.cadastrar(cadastroPayload)
         .then(() => {
           this.setAppLoading(false)
           this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Produto cadastrado com sucesso!')
           this.$router.push('/produto')
         })
-        .catch(() => {
+        .catch(({ message }) => {
           this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, 'Erro ao cadastrar um produto, tente novamente mais tarde.')
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
         })
     }
   }

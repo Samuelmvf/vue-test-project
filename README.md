@@ -16,7 +16,7 @@ Também foram aplicados conceitos de clean code e arquitetura limpa no projeto c
 - Responsabilidade única
 - Inversão de dependência
 - DRY
-- Design Patterns como: Factory Method e Strategy
+- Design Patterns como: Factory Method, Strategy e Repository Pattern
 
 
 ## Instalação

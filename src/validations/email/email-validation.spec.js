@@ -11,6 +11,12 @@ describe('EmailValidation', () => {
   it('Deve retornar true caso o email esteja válido', () => {
     const sut = new EmailValidation('email')
     const campoValido = sut.validate(faker.internet.email())
-    expect(campoValido).toBeTruthy()
+    expect(campoValido).toBe(true)
+  })
+
+  it('Deve retornar true caso o email esteja vazio', () => {
+    const sut = new EmailValidation('email')
+    const campoValido = sut.validate('')
+    expect(campoValido).toBe(true)
   })
 })

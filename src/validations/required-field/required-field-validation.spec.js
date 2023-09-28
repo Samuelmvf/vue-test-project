@@ -1,6 +1,7 @@
-import { RequiredFieldValidation } from "@/validations";
+import { faker } from "@faker-js/faker"
+import { RequiredFieldValidation } from "@/validations"
 
-const makeSut = () => new RequiredFieldValidation('campo')
+const makeSut = () => new RequiredFieldValidation(faker.database.column())
 
 describe('RequiredFieldValidation', () => {
   it('Deve retornar um Error caso o campo esteja vazio', () => {

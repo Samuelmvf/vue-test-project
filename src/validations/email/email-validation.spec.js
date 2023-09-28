@@ -1,10 +1,10 @@
+import { faker } from "@faker-js/faker"
 import { EmailValidation } from "@/validations"
-import { faker } from "@faker-js/faker";
 
 describe('EmailValidation', () => {
   it('Deve retornar um Error caso o email esteja inválido', () => {
     const sut = new EmailValidation('email')
-    const error = sut.validate('error')
+    const error = sut.validate(faker.lorem.word())
     expect(error).toBe(sut.message)
   })
 

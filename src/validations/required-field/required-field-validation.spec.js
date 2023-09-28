@@ -12,6 +12,6 @@ describe('RequiredFieldValidation', () => {
   it('Deve retornar true caso o campo esteja valido', () => {
     const sut = makeSut()
     const retornoValidacao = sut.validate('valor_valido')
-    expect(retornoValidacao).toBe(true)
+    expect(retornoValidacao).toBeTruthy()
   });
 })

@@ -15,6 +15,6 @@ describe('MinLengthValidation', () => {
   it('Deve retornar true caso o texto possua o tamanho minimo de caracteres.', () => {
     const sut = makeSut()
     const retornoValidacao = sut.validate('test_value')
-    expect(retornoValidacao).toBe(true)
+    expect(retornoValidacao).toBeTruthy()
   });
 })

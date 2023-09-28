@@ -17,6 +17,6 @@ describe('MinLengthValidation', () => {
     const minLength = 10
     const sut = makeSut(minLength)
     const retornoValidacao = sut.validate(faker.string.alphanumeric({ length: minLength }))
-    expect(retornoValidacao).toBeTruthy()
+    expect(retornoValidacao).toBe(true)
   });
 })

@@ -17,6 +17,6 @@ describe('MaxLengthValidation', () => {
     const maxLength = 10
     const sut = makeSut(maxLength);
     const retornoValidacao = sut.validate(faker.string.alphanumeric({ length: maxLength }))
-    expect(retornoValidacao).toBeTruthy()
+    expect(retornoValidacao).toBe(true)
   });
 })

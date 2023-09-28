@@ -1,11 +1,16 @@
 module.exports = {
+  plugins: [
+    'jest'
+  ],
   root: true,
   env: {
-    node: true
+    node: true,
+    'jest/globals': true
   },
   extends: [
     'plugin:vue/vue3-essential',
-    'eslint:recommended'
+    'eslint:recommended',
+    'plugin:jest/recommended'
   ],
   parserOptions: {
     parser: 'babel-eslint'

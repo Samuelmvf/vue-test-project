@@ -18,7 +18,6 @@ const produtoRules = {
 }
 
 const checaEntidadeEstaInvalida = (entidade, rules) => {
-  debugger
   const camposChecados = Object.entries(rules).reduce((acc, [key, value]) => {
     value.forEach(regra => {
       acc.push(regra(entidade[key]))

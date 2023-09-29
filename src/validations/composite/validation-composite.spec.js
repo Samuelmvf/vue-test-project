@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker"
-import { ValidationComposite } from "@/validations/composite/validation-composite"
-import { ValidationSpy } from "@/validations/test/mock-validation";
+
+import { ValidationComposite } from "@/validations/composite"
+import { ValidationSpy } from "@/validations/test"
 
 describe('ValidationComposite', () => {
   it('Deve retornar o primeiro erro de validação encontrado', () => {

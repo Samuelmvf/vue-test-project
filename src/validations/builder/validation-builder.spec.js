@@ -1,6 +1,6 @@
-import { ValidationBuilder } from "@/validations/builder/validation-builder";
+import { ValidationBuilder } from "@/validations/builder";
 import { faker } from '@faker-js/faker'
-import {CampoObrigatorioValidation, EmailValidation, MaxLengthValidation, MinLengthValidation} from "@/validations";
+import { CampoObrigatorioValidation, EmailValidation, MaxLengthValidation, MinLengthValidation } from "@/validations";
 
 describe('ValidationBuilder', () => {
 

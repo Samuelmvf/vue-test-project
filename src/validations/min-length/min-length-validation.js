@@ -1,11 +1,11 @@
 export class MinLengthValidation {
-  constructor (name, minLength) {
-    this.name = name
+  constructor (nomeCampo, minLength) {
+    this.nomeCampo = nomeCampo
     this.minLength = minLength
-    this.message = `O campo deve ter no mínimo ${minLength} caracteres.`
+    this.mensagem = `O campo deve ter no mínimo ${minLength} caracteres.`
   }
 
-  validate (value) {
-    return value?.length >= this.minLength || this.message
+  validar (valor) {
+    return valor?.length >= this.minLength || this.mensagem
   }
 }

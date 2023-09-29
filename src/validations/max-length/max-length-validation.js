@@ -1,11 +1,11 @@
 export class MaxLengthValidation {
-  constructor (name, maxLength) {
-    this.name = name
+  constructor (nomeCampo, maxLength) {
+    this.nomeCampo = nomeCampo
     this.maxLength = maxLength
-    this.message = `O campo deve ter no máximo ${maxLength} caracteres.`
+    this.mensagem = `O campo deve ter no máximo ${maxLength} caracteres.`
   }
 
-  validate (value) {
-    return value?.length <= this.maxLength || this.message
+  validar (valor) {
+    return valor?.length <= this.maxLength || this.mensagem
   }
 }

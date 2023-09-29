@@ -1,11 +1,11 @@
 export class EmailValidation {
-  message = 'O email digitado é inválido.'
-  constructor (name) {
-    this.name = name
+  mensagem = 'O email digitado é inválido.'
+  constructor (nomeCampo) {
+    this.nomeCampo = nomeCampo
   }
 
-  validate (value) {
+  validar (valor) {
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-    return (!value || emailRegex.test(value)) || this.message
+    return (!valor || emailRegex.test(valor)) || this.mensagem
   }
 }

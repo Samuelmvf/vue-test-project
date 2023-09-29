@@ -1,7 +1,10 @@
-export const ValidationComposite = (validations) => ({
-  validations,
-  validar: function (campoSobValidacao, valorCampo) {
-    const validadores = this.validations.filter((v) => v.nomeCampo === campoSobValidacao)
+export class ValidationComposite {
+  validations = []
+  constructor(validations) {
+    this.validations = validations
+  }
+  validar (campoSobValidacao, valorCampo) {
+    const validadores = this.validations.filter((validation) => validation.nomeCampo === campoSobValidacao)
 
     for (const validador of validadores) {
       const retornoValidacao = validador.validar(valorCampo)
@@ -11,4 +14,4 @@ export const ValidationComposite = (validations) => ({
 
     return true
   }
-})
+}

@@ -12,7 +12,7 @@ describe('ValidationComposite', () => {
     const mockedSpy2 = new ValidationSpy(nomeCampo)
     mockedSpy2.error = faker.lorem.words()
 
-    const sut = ValidationComposite([mockedSpy, mockedSpy2])
+    const sut = new ValidationComposite([mockedSpy, mockedSpy2])
     const retornoValidacao = sut.validar(nomeCampo, faker.lorem.word())
 
     expect(retornoValidacao).toBe(mockedSpy.error)
@@ -22,7 +22,7 @@ describe('ValidationComposite', () => {
     const nomeCampo = faker.database.column()
 
     const mockedSpy = new ValidationSpy(nomeCampo)
-    const sut = ValidationComposite([mockedSpy])
+    const sut = new ValidationComposite([mockedSpy])
 
     const retornoValidacao = sut.validar(nomeCampo, faker.lorem.word())
     expect(retornoValidacao).toBe(true)

@@ -3,7 +3,10 @@
     <titulo-secao texto="Cadastro de clientes"/>
 
     <v-form ref="formCadastroCliente" class="mt-4">
-      <form-cliente-content :formulario-props="factoryFormCadastroCliente()"/>
+      <form-cliente-content
+        :acoes-formulario="factoryAcoesFormulario()"
+        :validadores="factoryValidadores()"
+      />
     </v-form>
   </div>
 </template>
@@ -11,10 +14,13 @@
 <script>
 import { ClienteRepository } from "@/repository"
 
-import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
+import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
 
-import TituloSecao from "@/components/titulo-secao/titulo-secao.vue";
-import FormClienteContent from "@/components/form/cliente-content/form-cliente-content.vue";
+import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
+import FormClienteContent from "@/components/form/cliente-content/form-cliente-content.vue"
+
+import { ValidationComposite } from "@/validations/composite/validation-composite"
+import { ValidationBuilder as Builder } from "@/validations/builder/validation-builder"
 
 export default {
   name: 'page-cadastro-cliente',
@@ -22,10 +28,28 @@ export default {
   inject: [ 'setAppLoading', 'emitirNotificacao' ],
 
   methods: {
-    factoryFormCadastroCliente () {
-      return {
-        inputPropsCustomizadas: {},
-        acoes: [{
+    actionCadastrarCliente (dadosCliente) {
+      const cadastroPayload = {
+        id: undefined,
+        ...dadosCliente
+      }
+
+      this.setAppLoading(true)
+      ClienteRepository.cadastrar(cadastroPayload)
+        .then(() => {
+          this.setAppLoading(false)
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Cliente cadastrado com sucesso')
+          this.$router.push('/cliente')
+        })
+        .catch(({ message }) => {
+          this.setAppLoading(false)
+          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
+        })
+    },
+
+    factoryAcoesFormulario () {
+      return [
+        {
           nome: 'Cadastrar',
           class: 'bg-success',
           func: (dadosCliente) => {
@@ -39,26 +63,17 @@ export default {
           nome: 'Cancelar',
           class: '',
           func: () => this.$router.push('/cliente')
-        }]
-      }
+        }
+      ]
     },
 
-    actionCadastrarCliente (dadosCliente) {
-      const cadastroPayload = {
-        id: undefined,
-        ...dadosCliente
-      }
-      this.setAppLoading(true)
-      ClienteRepository.cadastrar(cadastroPayload)
-        .then(() => {
-          this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.SUCESSO, 'Cliente cadastrado com sucesso')
-          this.$router.push('/cliente')
-        })
-        .catch(({ message }) => {
-          this.setAppLoading(false)
-          this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
-        })
+    factoryValidadores () {
+      return new ValidationComposite([
+        ...new Builder('nome').required().build(),
+        ...new Builder('documento').required().build(),
+        ...new Builder('telefone').required().build(),
+        ...new Builder('email').required().email().build()
+      ])
     }
   }
 }

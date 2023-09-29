@@ -4,36 +4,36 @@
     <v-card-item>
       <div class="row mt-7">
         <sams-input
-          :rules="rules['nome']"
+          :rules="[validadores.validar('nome', cliente.nome)]"
           class="mb-2 col-sm-12 col-md-6"
           label="Nome*"
           v-model="cliente.nome"
-          v-bind="formularioProps.inputPropsCustomizadas?.nome"
+          v-bind="customizacoesInputs?.nome"
         ></sams-input>
 
         <sams-input
-          :rules="rules['documento']"
+          :rules="[validadores.validar('documento', cliente.documento)]"
           class="mb-2 col-sm-12 col-md-6"
           label="Documento*"
           v-model="cliente.documento"
-          v-bind="formularioProps.inputPropsCustomizadas?.documento"
+          v-bind="customizacoesInputs?.documento"
         ></sams-input>
 
         <sams-input
-          :rules="rules['telefone']"
+          :rules="[validadores.validar('telefone', cliente.telefone)]"
           class="mb-2 col-sm-12 col-md-6"
           label="Telefone*"
           v-model="cliente.telefone"
           type="number"
-          v-bind="formularioProps.inputPropsCustomizadas?.telefone"
+          v-bind="customizacoesInputs?.telefone"
         ></sams-input>
 
         <sams-input
-          :rules="rules['email']"
+          :rules="[validadores.validar('email', cliente.email)]"
           class="mb-2 col-sm-12 col-md-6"
           label="Email*"
           v-model="cliente.email"
-          v-bind="formularioProps.inputPropsCustomizadas?.email"
+          v-bind="customizacoesInputs?.email"
         ></sams-input>
 
         <v-switch
@@ -49,7 +49,7 @@
 
     <v-card-actions class="form-card-actions">
       <v-btn
-        v-for="(acao, i) in formularioProps.acoes"
+        v-for="(acao, i) in acoesFormulario"
         :key="acao.nome + i"
         :class="acao.class"
         @click="acao.func(cliente)"
@@ -62,16 +62,22 @@
 
 <script>
 import SamsInput from "@/components/input/sams-input.vue"
-import { rulesRequired, rulesEmail } from '@/utils/rules'
 
 export default {
   name: 'form-cliente-content',
   components: { SamsInput },
 
   props: {
-    formularioProps: {
-      type: Object,
+    acoesFormulario: {
+      type: Array,
       required: true
+    },
+    validadores: {
+      required: false
+    },
+    customizacoesInputs: {
+      type: Object,
+      required: false
     }
   },
 
@@ -83,12 +89,6 @@ export default {
         telefone: '',
         email: '',
         ativo: true
-      },
-      rules: {
-        nome: [rulesRequired],
-        documento: [rulesRequired],
-        telefone: [rulesRequired],
-        email: [rulesRequired, rulesEmail]
       }
     }
   },

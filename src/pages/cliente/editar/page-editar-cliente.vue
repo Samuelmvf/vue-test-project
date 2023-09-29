@@ -3,17 +3,25 @@
     <titulo-secao texto="Editar cliente"/>
 
     <v-form ref="formEditarCliente" class="mt-4">
-      <form-cliente-content ref="formClienteContent" :formulario-props="factoryFormEdicaoCliente()"/>
+      <form-cliente-content
+        ref="formClienteContent"
+        :acoes-formulario="factoryAcoesFormulario()"
+        :validadores="factoryValidadores()"
+        :customizacoes-inputs="factoryCustomizacoesInputs()"
+      />
     </v-form>
   </div>
 </template>
 
 <script>
 import { ClienteRepository } from "@/repository"
-import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao";
+import { NOTIFICACAO_TIPOS } from "@/contants/constantes-notificacao"
 
 import TituloSecao from "@/components/titulo-secao/titulo-secao.vue"
-import FormClienteContent from "@/components/form/cliente-content/form-cliente-content.vue";
+import FormClienteContent from "@/components/form/cliente-content/form-cliente-content.vue"
+
+import { ValidationComposite } from "@/validations/composite/validation-composite"
+import { ValidationBuilder as Builder } from "@/validations/builder/validation-builder"
 
 export default {
   name: 'page-editar-cliente',
@@ -27,37 +35,11 @@ export default {
   }),
 
   methods: {
-    factoryFormEdicaoCliente () {
-      return {
-        inputPropsCustomizadas: {
-          email: {
-            disabled: true
-          }
-        },
-        acoes: [{
-          nome: 'Salvar',
-          class: 'bg-success',
-          func: (dadosCliente) => {
-            this.$refs.formEditarCliente.validate()
-              .then(({ valid }) => {
-                if (valid)
-                  this.actionEditarCliente(dadosCliente)
-              })
-          }
-        }, {
-          nome: 'Cancelar',
-          class: '',
-          func: () => this.$router.push('/cliente')
-        }]
-      }
-    },
-
     actionEditarCliente (dadosCliente) {
       const edicaoPayload = {
         id: this.clienteId,
         ...dadosCliente
       }
-
       this.setAppLoading(true)
       ClienteRepository.editar(this.clienteId, edicaoPayload)
         .then(() => {
@@ -86,6 +68,41 @@ export default {
           this.emitirNotificacao(NOTIFICACAO_TIPOS.ERRO, message)
           this.$router.push('/cliente')
         })
+    },
+
+    factoryAcoesFormulario () {
+      return [{
+        nome: 'Salvar',
+        class: 'bg-success',
+        func: (dadosCliente) => {
+          this.$refs.formEditarCliente.validate()
+            .then(({ valid }) => {
+              if (valid)
+                this.actionEditarCliente(dadosCliente)
+            })
+        }
+      }, {
+        nome: 'Cancelar',
+        class: '',
+        func: () => this.$router.push('/cliente')
+      }]
+    },
+
+    factoryValidadores () {
+      return new ValidationComposite([
+        ...new Builder('nome').required().build(),
+        ...new Builder('documento').required().build(),
+        ...new Builder('telefone').required().build(),
+        ...new Builder('email').required().email().build()
+      ])
+    },
+
+    factoryCustomizacoesInputs () {
+      return {
+        email: {
+          disabled: true
+        }
+      }
     },
 
     getClienteTratado (cliente) {
